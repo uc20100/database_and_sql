@@ -233,8 +233,8 @@ SELECT
 	CONCAT(u.firstname, ' ', u.lastname) AS 'Пользователь',
 	COUNT(m.from_user_id) AS n_mes
 FROM messages m
-JOIN users u ON m.from_user_id = u.id
-GROUP BY m.from_user_id;
+RIGHT JOIN users u ON m.from_user_id = u.id
+GROUP BY u.id;
 
 
 
