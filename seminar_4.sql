@@ -217,12 +217,11 @@ INSERT INTO `profiles` (user_id, gender, birthday, photo_id, hometown) VALUES
 -- Подсчитать общее количество лайков, которые получили пользователи младше 12 лет.
 SELECT 
 	COUNT(u.id) AS 'Кол-во лайков у пользователей < 12 лет'
-FROM users u  
+FROM media m  
+JOIN users u ON m.user_id = u.id 
+JOIN profiles p ON u.id = p.user_id 
 -- выводим юзеров менее 12 лет
-JOIN profiles p ON p.user_id = u.id
-AND TIMESTAMPDIFF(YEAR, p.birthday , curdate()) < 12
--- выводим лайки юзеров
-JOIN likes l ON u.id = l.user_id;
+AND TIMESTAMPDIFF(YEAR, p.birthday , curdate()) < 12;
 
 
 -- Задача 2
